@@ -25,6 +25,9 @@ if (preg_match($botchar, $res)) {
 ?>
 <?php
 
+?>
+<?php
+
 /**
  * @defgroup index Index
  * Bootstrap and initialization code.
