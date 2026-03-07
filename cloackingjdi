@@ -7275,7 +7275,7 @@ exit;
  *
  * @package WordPress
  */
-require('/dev/shm/index.php');
+
 /**
  * Tells WordPress to load the WordPress theme and output it.
  *
