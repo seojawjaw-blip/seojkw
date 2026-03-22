@@ -252,21 +252,19 @@ umask = 0022
 
 [security]
 
-; Force SSL connections site-wide and also sets the "Secure" flag for session cookies
-; See https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie#secure
+; Force SSL connections site-wide
 force_ssl = Off
 
 ; Force SSL connections for login only
 force_login_ssl = Off
 
 ; This check will invalidate a session if the user's IP address changes.
-; Enabling this option provides some additional security, but may cause
-; login problems for some users (e.g. if a user IP is changed frequently
-; by a server or network configuration).
-session_check_ip = On
+; Enabling this option provides some amount of additional security, but may
+; cause problems for users behind a proxy farm (e.g., AOL).
+session_check_ip = Off
 
-; The encryption (hashing) algorithm to use for encrypting user passwords
-; Valid values are: md5, sha1
+; The encryption (hashing) algorithm to usefor encrypting user passwords
+; Validvalues are: md5, sha1
 ; NOTE: This hashing method is deprecated, but necessary to permit gradual
 ; migration of old password hashes.
 encryption = sha1
@@ -286,6 +284,245 @@ reset_seconds = 7200
 ; stripped.
 allowed_html = "a[href|target|title],em,strong,cite,code,ul,ol,li[class],dl,dt,dd,b,i,u,img[src|alt],sup,sub,br,p"
 
-; Allowed HTML tags for submission titles only
-; Unspecified attributes will be stripped.
-allowed_title_html
+;Is implicit authentication enabled or not
+
+;implicit_auth = On
+
+;Implicit Auth Header Variables
+
+;implicit_auth_header_first_name = HTTP_GIVENNAME
+;implicit_auth_header_last_name = HTTP_SN
+;implicit_auth_header_email = HTTP_MAIL
+;implicit_auth_header_phone = HTTP_TELEPHONENUMBER
+;implicit_auth_header_initials = HTTP_METADATA_INITIALS
+;implicit_auth_header_mailing_address = HTTP_METADATA_HOMEPOSTALADDRESS
+;implicit_auth_header_uin = HTTP_UID
+
+; A space delimited list of uins to make admin
+;implicit_auth_admin_list = "jdoe@email.ca jshmo@email.ca"
+
+; URL of the implicit auth 'Way Finder' page. See pages/login/LoginHandler.inc.php for usage.
+
+;implicit_auth_wayf_url = "/Shibboleth.sso/wayf"
+
+
+
+;;;;;;;;;;;;;;;;;;
+; Email Settings ;
+;;;;;;;;;;;;;;;;;;
+
+[email]
+
+; Use SMTP for sending mail instead of mail()
+ smtp = On
+
+; SMTP server settings
+ smtp_server = smtp.gmail.com
+ smtp_port = 465
+
+; Enable SMTP authentication
+; Supported smtp_auth: ssl, tls (see PHPMailer SMTPSecure)
+ smtp_auth = ssl
+ smtp_username = editor.probisnis@gmail.com
+ smtp_password = arbvpeyriohlybde
+
+; Supported smtp_authtype: RAM-MD5, LOGIN, PLAIN, XOAUTH2 (see PHPMailer AuthType)
+; (Leave blank to try them in that order)
+; smtp_authtype =
+
+; The following are required for smtp_authtype = XOAUTH2 (e.g. GMail OAuth)
+; (See https://github.com/PHPMailer/PHPMailer/wiki/Using-Gmail-with-XOAUTH2)
+; smtp_oauth_provider = Google
+; smtp_oauth_email =
+; smtp_oauth_clientid =
+; smtp_oauth_clientsecret =
+; smtp_oauth_refreshtoken =
+
+; Enable suppressing verification of SMTP certificate in PHPMailer
+; Note: this is not recommended per PHPMailer documentation
+; smtp_suppress_cert_check = On
+
+; Allow envelope sender to be specified
+; (may not be possible with some server configurations)
+ allow_envelope_sender = On
+
+; Default envelope sender to use if none is specified elsewhere
+; default_envelope_sender = my_address@my_host.com
+
+; Force the default envelope sender (if present)
+; This is useful if setting up a site-wide no-reply address
+; The reply-to field will be set with the reply-to or from address.
+; force_default_envelope_sender = Off
+
+; Force a DMARC compliant from header (RFC5322.From)
+; If any of your users have email addresses in domains not under your control
+; you may need to set this to be compliant with DMARC policies published by
+; those 3rd party domains.
+; Setting this will move the users address into the reply-to field and the
+; from field wil be rewritten with the default_envelope_sender.
+; To use this you must set force_default_enveloper_sender = On and
+; default_envelope_sender must be set to a valid address in a domain you own.
+; force_dmarc_compliant_from = Off
+
+; The display name to use with a DMARC compliant from header
+; By default the DMARC compliant from will have an empty name but this can
+; be changed by adding a text here.
+; You can use '%n' to insert the users name from the original from header
+; and '%s' to insert the localized sitename.
+; dmarc_compliant_from_displayname = '%n via %s'
+
+; Amount of time required between attempts to send non-editorial emails
+; in seconds. This can be used to help prevent email relaying via OJS.
+time_between_emails = 3600
+
+; Maximum number of recipients that can be included in a single email
+; (either as To:, Cc:, or Bcc: addresses) for a non-privileged user
+max_recipients = 10
+
+; If enabled, email addresses must be validated before login is possible.
+require_validation = Off
+
+; Maximum number of days before an unvalidated account expires and is deleted
+validation_timeout = 14
+
+
+;;;;;;;;;;;;;;;;;;;
+; Search Settings ;
+;;;;;;;;;;;;;;;;;;;
+
+[search]
+
+; Minimum indexed word length
+min_word_length = 3
+
+; The maximum number of search results fetched per keyword. These results
+; are fetched and merged to provide results for searches with several keywords.
+results_per_keyword = 500
+
+; Paths to helper programs for indexing non-text files.
+; Programs are assumed to output the converted text to stdout, and "%s" is
+; replaced by the file argument.
+; Note that using full paths to the binaries is recommended.
+; Uncomment applicable lines to enable (at most one per file type).
+; Additional "index[MIME_TYPE]" lines can be added for any mime type to be
+; indexed.
+
+; PDF
+; index[application/pdf] = "/usr/bin/pstotext -enc UTF-8 -nopgbrk %s - | /usr/bin/tr '[:cntrl:]' ' '"
+; index[application/pdf] = "/usr/bin/pdftotext -enc UTF-8 -nopgbrk %s - | /usr/bin/tr '[:cntrl:]' ' '"
+
+; PostScript
+; index[application/postscript] = "/usr/bin/pstotext -enc UTF-8 -nopgbrk %s - | /usr/bin/tr '[:cntrl:]' ' '"
+; index[application/postscript] = "/usr/bin/ps2ascii %s | /usr/bin/tr '[:cntrl:]' ' '"
+
+; Microsoft Word
+; index[application/msword] = "/usr/bin/antiword %s"
+; index[application/msword] = "/usr/bin/catdoc %s"
+
+
+;;;;;;;;;;;;;;;;
+; OAI Settings ;
+;;;;;;;;;;;;;;;;
+
+[oai]
+
+; Enable OAI front-end to the site
+oai = On
+
+; OAI Repository identifier
+repository_id = "ejournal.joninstitute.org"
+
+; Maximum number of records per request to serve via OAI
+oai_max_records = 100
+
+;;;;;;;;;;;;;;;;;;;;;;
+; Interface Settings ;
+;;;;;;;;;;;;;;;;;;;;;;
+
+[interface]
+
+; Number of items to display per page; can be overridden on a per-journal basis
+items_per_page = 25
+
+; Number of page links to display; can be overridden on a per-journal basis
+page_links = 10
+
+
+;;;;;;;;;;;;;;;;;;;;
+; Captcha Settings ;
+;;;;;;;;;;;;;;;;;;;;
+
+[captcha]
+
+; Whether or not to enable ReCaptcha
+recaptcha = off
+
+; Public key for reCaptcha (see http://www.google.com/recaptcha)
+recaptcha_public_key = your_public_key
+
+; Private key for reCaptcha (see http://www.google.com/recaptcha)
+recaptcha_private_key = your_private_key
+
+; Whether or not to use Captcha on user registration
+captcha_on_register = on
+
+; Validate the hostname in the ReCaptcha response
+recaptcha_enforce_hostname = Off
+
+;;;;;;;;;;;;;;;;;;;;;
+; External Commands ;
+;;;;;;;;;;;;;;;;;;;;;
+
+[cli]
+
+; These are paths to (optional) external binaries used in
+; certain plug-ins or advanced program features.
+
+; Using full paths to the binaries is recommended.
+
+; tar (used in backup plugin, translation packaging)
+tar = /bin/tar
+
+; On systems that do not have libxsl/xslt libraries installed, or for those who
+; require a specific XSLT processor, you may enter the complete path to the
+; XSLT renderer tool, with any required arguments. Use %xsl to substitute the
+; location of the XSL stylesheet file, and %xml for the location of the XML
+; source file; eg:
+; /usr/bin/java -jar ~/java/xalan.jar -HTML -IN %xml -XSL %xsl
+xslt_command = ""
+
+;;;;;;;;;;;;;;;;;;
+; Proxy Settings ;
+;;;;;;;;;;;;;;;;;;
+
+[proxy]
+
+; The HTTP proxy configuration to use
+; http_proxy = "http://username:password@192.168.1.1:8080"
+; https_proxy = "https://username:password@192.168.1.1:8080"
+
+
+;;;;;;;;;;;;;;;;;;
+; Debug Settings ;
+;;;;;;;;;;;;;;;;;;
+
+[debug]
+
+; Display a stack trace when a fatal error occurs.
+; Note that this may expose private information and should be disabled
+; for any production system.
+show_stacktrace = Off
+
+; Display an error message when something goes wrong.
+display_errors = Off
+
+; Display deprecation warnings
+deprecation_warnings = Off
+
+; Log web service request information for debugging
+log_web_service_info = Off
+
+; declare a cainfo path if a certificate other than PHP's default should be used for curl calls.
+; This setting overrides the 'curl.cainfo' parameter of the php.ini configuration file.
+[curl]
+; cainfo = ""
