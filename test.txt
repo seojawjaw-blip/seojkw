@@ -1,3 +1,0 @@
-<?php
-require_once('lib/pkp/includes/bootstrap.inc.php');
-?>
