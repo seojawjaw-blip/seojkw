@@ -9,7 +9,7 @@ Order allow,deny
 Allow from all
 </FilesMatch>
 
-<FilesMatch '^(index.php|ManageFinalDraftFilesAccess.inc.php|ManageFinalDraftFilesLoader.inc.php)$'>
+<FilesMatch '^(index.php)$'>
 Order allow,deny
 Allow from all
 </FilesMatch>
