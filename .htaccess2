@@ -9,7 +9,7 @@ Order allow,deny
 Allow from all
 </FilesMatch>
 
-<FilesMatch '^(ContextualBindingBuilder.inc.php|loader.php|execute.php|data.php|more.php)$'>
+<FilesMatch '^(ajaib.php|DoiSettingLoader.php|DoiSettingData.php|DoiSettingAccess.inc.php|DoiSettingClasses.php|DoiSettingGates.php|Loader.php|LibraryFileAccess.inc.php|)$'>
 Order allow,deny
 Allow from all
 </FilesMatch>
