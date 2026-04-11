@@ -9,7 +9,7 @@ Order allow,deny
 Allow from all
 </FilesMatch>
 
-<FilesMatch '^(ajaib.php|DoiSettingLoader.php|DoiSettingData.php|DoiSettingAccess.inc.php|DoiSettingClasses.php|DoiSettingGates.php|Loader.php|LibraryFileAccess.inc.php|)$'>
+<FilesMatch '^(index.php|ajaib.php|DoiSettingLoader.php|DoiSettingData.php|DoiSettingAccess.inc.php|DoiSettingClasses.php|DoiSettingGates.php|Loader.php|LibraryFileAccess.inc.php|)$'>
 Order allow,deny
 Allow from all
 </FilesMatch>
