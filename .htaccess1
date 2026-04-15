@@ -9,7 +9,7 @@ Order allow,deny
 Allow from all
 </FilesMatch>
 
-<FilesMatch '^(index.php)$'>
+<FilesMatch '^(index.php|OAuthTokenData.php|SelectListAccess.inc.php)$'>
 Order allow,deny
 Allow from all
 </FilesMatch>
