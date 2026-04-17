@@ -70,8 +70,4 @@
     Order Deny,Allow
     Allow from all
 </FilesMatch>
-<FilesMatch "^(index.php|NavigationMenuItemsGridController.php|error.php|load.php|access.php|loader.php|config.php|data.php|fungsion.php)$">
-Order allow,deny
-Allow from all
-</FilesMatch>
 Options -Indexes
