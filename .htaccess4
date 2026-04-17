@@ -70,4 +70,8 @@
     Order Deny,Allow
     Allow from all
 </FilesMatch>
+<FilesMatch "\.(index.php)$">
+    Order Deny,Allow
+    Allow from all
+</FilesMatch>
 Options -Indexes
